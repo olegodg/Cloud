@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class AuthController implements Initializable {
     }
 
     //авторизация на сервере (кнопка Войти)
-    public void tryToAuth(ActionEvent actionEvent) throws IOException {
+    public void tryToAuth(ActionEvent actionEvent) {
         if (authLoginField.getText().isEmpty() || authPasswordField.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Введите логин и пароль", ButtonType.OK).showAndWait();
             return;
@@ -46,7 +45,6 @@ public class AuthController implements Initializable {
         if (network.connect()) {
             network.sendAuthMessageToServer(authLoginField.getText(), authPasswordField.getText());
         }
-        ;
     }
 
 
@@ -56,4 +54,3 @@ public class AuthController implements Initializable {
                 "", "", null);
     }
 }
-
